@@ -18,7 +18,6 @@ import Header from "./Header";
 import Content from "./Content";
 
 const App = () => {
-
   return (
     <div className="grid">
       <ScrollToHashElement />
@@ -31,14 +30,34 @@ const App = () => {
 export default App;
 ```
 
+## React-Router Links
+
+You can create React-Router links as you normally would. For example a link to a hash element on the homepage would look like this
+
+```js
+<Link to="/#delightful-visualization">Delightful Visualization</Link>
+```
+
+or this
+
+```js
+<Link to="#delightful-visualization">Delightful Visualization</Link>
+```
+
+a sub page like this
+
+```js
+<Link to="/about#story">Our Story</Link>
+```
+
 ## Scroll Behavior
 
 Scroll behavior such as smooth scroll can be easily modified by changing the options in the useEffect portion of the component
 
 ```js
 hashElement.scrollIntoView({
-        behavior: "smooth",
-        // block: "end",
-        inline: "nearest",
-      });
+  behavior: "smooth",
+  // block: "end",
+  inline: "nearest",
+});
 ```
