@@ -12,6 +12,8 @@ const ScrollToHashElement = ({
   inline = "nearest",
   block = "start",
 }: ScrollToHashElementProps) => {
+  console.log("✨ ScrollToHashElement rendered");
+
   const location = useLocation();
 
   useLayoutEffect(() => {
