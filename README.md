@@ -1,12 +1,6 @@
 # Scroll-To-Hash-Element
 
-![npm](https://img.shields.io/npm/v/@cascadia-code/scroll-to-hash-element)
-
-![GitHub License](https://img.shields.io/github/license/ncoughlin/scroll-to-hash-element)
-
-![GitHub package.json dev/peer/optional dependency version](https://img.shields.io/github/package-json/dependency-version/ncoughlin/scroll-to-hash-element/peer/react-router-dom)
-
-![GitHub package.json dev/peer/optional dependency version](https://img.shields.io/github/package-json/dependency-version/ncoughlin/scroll-to-hash-element/peer/react)
+![npm](https://img.shields.io/npm/v/@cascadia-code/scroll-to-hash-element) ![GitHub License](https://img.shields.io/github/license/ncoughlin/scroll-to-hash-element) ![GitHub package.json dev/peer/optional dependency version](https://img.shields.io/github/package-json/dependency-version/ncoughlin/scroll-to-hash-element/peer/react-router-dom) ![GitHub package.json dev/peer/optional dependency version](https://img.shields.io/github/package-json/dependency-version/ncoughlin/scroll-to-hash-element/peer/react)
 
 
 
