@@ -1,4 +1,14 @@
-# Intro
+# Scroll-To-Hash-Element
+
+![npm](https://img.shields.io/npm/v/@cascadia-code/scroll-to-hash-element)
+
+![GitHub License](https://img.shields.io/github/license/ncoughlin/scroll-to-hash-element)
+
+![GitHub package.json dev/peer/optional dependency version](https://img.shields.io/github/package-json/dependency-version/ncoughlin/scroll-to-hash-element/peer/react-router-dom)
+
+![GitHub package.json dev/peer/optional dependency version](https://img.shields.io/github/package-json/dependency-version/ncoughlin/scroll-to-hash-element/peer/react)
+
+
 
 This component enables [hash links](https://developer.mozilla.org/en-US/docs/Web/API/URL/hash) to function with [React Router v6+](https://reactrouter.com/en/main) .
 
