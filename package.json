@@ -1,8 +1,11 @@
 {
   "name": "@react-router/scroll-to-hash-element",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Enables hash links. Listens to the hash property of React-Router location and scrolls to the identified element if it exists.",
   "main": "src/index.tsx",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "test": "npm test"
   },
@@ -16,7 +19,7 @@
     "hash-link"
   ],
   "author": "Nicholas Coughlin",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/ncoughlin/scroll-to-hash-element/issues"
   },
