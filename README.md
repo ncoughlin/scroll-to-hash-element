@@ -1,6 +1,8 @@
 # Intro
 
-This component was created to solve the problem of [react-router-hash-link](https://www.npmjs.com/package/react-router-hash-link) no longer functioning with React Router v6+.
+This component enables [hash links](https://developer.mozilla.org/en-US/docs/Web/API/URL/hash) to function with [React Router v6+](https://reactrouter.com/en/main) .
+
+In previous versions of React-Router (v5 etc) this was solved by [react-router-hash-link](https://www.npmjs.com/package/react-router-hash-link) which no longer functions with React Router v6+.
 
 It works by listening to the hash property of React-Router location and scrolling to the identified element if it exists.
 
@@ -14,14 +16,12 @@ Install the package with npm or yarn
 npm install @react-router/scroll-to-hash-element
 ```
 
-
-
 Just place this component anywhere in the application and it will work passively in the background.
 
-```js
+```js title=App.jsx
 import React from "react";
-// components
 import ScrollToHashElement from "@react-router/scroll-to-hash-element";
+
 import Header from "./Header";
 import Content from "./Content";
 
@@ -38,18 +38,39 @@ const App = () => {
 export default App;
 ```
 
+This component uses the react-router-dom useLocation hook, and therefore must be placed within the context of the RouterProvider.
+
+```js title=index.js
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />
+  },
+]);
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
+    <RouterProvider router={router} />
+  </React.StrictMode>
+);
+```
+
+So in this example the ScrollToHashElement component is placed within the App component which is within the RouterProvider.
+
 ## Usage
+
+### Creating Hash Links
 
 You can create React-Router links as you normally would. For example a link to a hash element on the homepage would look like this
 
 ```js
-<Link to="/#delightful-visualization">Delightful Visualization</Link>
+<Link to="/#some-div-id">Link Text</Link>
 ```
 
 or this
 
 ```js
-<Link to="#delightful-visualization">Delightful Visualization</Link>
+<Link to="#some-div-id">Link Text</Link>
 ```
 
 a sub page like this
@@ -58,14 +79,18 @@ a sub page like this
 <Link to="/about#story">Our Story</Link>
 ```
 
-## Scroll Behavior
+## Customize Scroll Behavior
 
-Scroll behavior such as smooth scroll can be easily modified by changing the options in the useEffect portion of the component
+You can customize the scroll behavior by passing props to the ScrollToHashElement component.
 
 ```js
-hashElement.scrollIntoView({
-  behavior: "smooth",
-  // block: "end",
-  inline: "nearest",
-});
+<ScrollToHashElement behavior="smooth" inline="center" block="center" />
 ```
+
+| prop | default | options |
+|----------|----------|----------|
+| `behavior` | `"auto"` | `"auto"`, `"instant"`, `"smooth"` |
+| `inline` | `"nearest"` | `"center"`, `"end"`, `"nearest"`, `"start"` |
+| `block` | `"start"` | `"center"`, `"end"`, `"nearest"`, `"start"` |
+
+You can read more about these properties here: [Element.scrollIntoView()](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView)
