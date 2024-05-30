@@ -1,5 +1,5 @@
 {
-  "name": "@react-router/scroll-to-hash-element",
+  "name": "@cascadia-code/scroll-to-hash-element",
   "version": "1.0.0",
   "description": "Enables hash links. Listens to the hash property of React-Router location and scrolls to the identified element if it exists.",
   "main": "src/index.tsx",

@@ -13,7 +13,7 @@ Scrolling itself is provided by the native browser method [Element.scrollIntoVie
 Install the package with npm or yarn
 
 ```bash
-npm install @react-router/scroll-to-hash-element
+npm install @cascadia-code/scroll-to-hash-element
 ```
 
 Just place this component anywhere in the application and it will work passively in the background.
