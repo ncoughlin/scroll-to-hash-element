@@ -8,12 +8,20 @@ Scrolling itself is provided by the native browser method [Element.scrollIntoVie
 
 ## Installation
 
+Install the package with npm or yarn
+
+```bash
+npm install @react-router/scroll-to-hash-element
+```
+
+
+
 Just place this component anywhere in the application and it will work passively in the background.
 
 ```js
 import React from "react";
 // components
-import ScrollToHashElement from "./ScrollToHashElement";
+import ScrollToHashElement from "@react-router/scroll-to-hash-element";
 import Header from "./Header";
 import Content from "./Content";
 
@@ -30,7 +38,7 @@ const App = () => {
 export default App;
 ```
 
-## React-Router Links
+## Usage
 
 You can create React-Router links as you normally would. For example a link to a hash element on the homepage would look like this
 
