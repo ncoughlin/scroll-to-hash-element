@@ -97,3 +97,4 @@ Desktop.ini
 *.bak
 *.tmp
 *.temp
+.npmrc

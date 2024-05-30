@@ -4,8 +4,7 @@
   "description": "Enables hash links. Listens to the hash property of React-Router location and scrolls to the identified element if it exists.",
   "main": "src/index.tsx",
   "publishConfig": {
-    "access": "public",
-    "registry": "https://npm.pkg.github.com"
+    "access": "public"
   },
   "scripts": {
     "test": "npm test"
