@@ -24,7 +24,7 @@ Just place this component anywhere in the top level of the application and it wi
 
 ```js title=App.jsx
 import React from "react";
-import ScrollToHashElement from "@react-router/scroll-to-hash-element";
+import ScrollToHashElement from "@cascadia-code/scroll-to-hash-element";
 
 import Header from "./Header";
 import Content from "./Content";
