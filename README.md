@@ -1,14 +1,14 @@
 # Scroll-To-Hash-Element
 
-![npm](https://img.shields.io/npm/v/@cascadia-code/scroll-to-hash-element) ![GitHub License](https://img.shields.io/github/license/ncoughlin/scroll-to-hash-element) ![GitHub package.json dev/peer/optional dependency version](https://img.shields.io/github/package-json/dependency-version/ncoughlin/scroll-to-hash-element/peer/react-router-dom) ![GitHub package.json dev/peer/optional dependency version](https://img.shields.io/github/package-json/dependency-version/ncoughlin/scroll-to-hash-element/peer/react)
+![npm](https://img.shields.io/npm/v/@cascadia-code/scroll-to-hash-element) ![GitHub License](https://img.shields.io/github/license/ncoughlin/scroll-to-hash-element) ![GitHub package.json dev/peer/optional dependency version](https://img.shields.io/github/package-json/dependency-version/ncoughlin/scroll-to-hash-element/peer/react)
 
+**No longer requires react-router as dependency!**
 
+This component enables [hash/anchor links](https://developer.mozilla.org/en-US/docs/Web/API/URL/hash) to function within a React application.
 
-This component enables [hash links](https://developer.mozilla.org/en-US/docs/Web/API/URL/hash) to function with [React Router v6+](https://reactrouter.com/en/main) .
+It works by listening to the hash property of `window.location` and scrolling to the matching element if it exists.
 
-In previous versions of React-Router (v5 etc) this was solved by [react-router-hash-link](https://www.npmjs.com/package/react-router-hash-link) which no longer functions with React Router v6+.
-
-It works by listening to the hash property of React-Router location and scrolling to the identified element if it exists.
+This was originally written to solve the issue of hash links no longer working with [React Router v6+](https://reactrouter.com/en/main), and required react-router as a dependency. However, it has been refactored to work with any router (or lack thereof).
 
 Scrolling itself is provided by the native browser method [Element.scrollIntoView()](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView)
 
@@ -20,7 +20,7 @@ Install the package with npm or yarn
 npm install @cascadia-code/scroll-to-hash-element
 ```
 
-Just place this component anywhere in the application and it will work passively in the background.
+Just place this component anywhere in the top level of the application and it will work passively in the background.
 
 ```js title=App.jsx
 import React from "react";
@@ -42,28 +42,11 @@ const App = () => {
 export default App;
 ```
 
-This component uses the react-router-dom useLocation hook, and therefore must be placed within the context of the RouterProvider.
-
-```js title=index.js
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />
-  },
-]);
-
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
-);
-```
-
-So in this example the ScrollToHashElement component is placed within the App component which is within the RouterProvider.
-
 ## Usage
 
 ### Creating Hash Links
+
+#### With React-Router
 
 You can create React-Router links as you normally would. For example a link to a hash element on the homepage would look like this
 
@@ -81,6 +64,26 @@ a sub page like this
 
 ```js
 <Link to="/about#story">Our Story</Link>
+```
+
+#### Without React-Router
+
+You can create standard anchor tags. For example a link to a hash element on the homepage would look like this
+
+```js
+<a href="/#some-div-id">Link Text</a>
+```
+
+or this
+
+```js
+<a href="#some-div-id">Link Text</a>
+```
+
+a sub page like this
+
+```js
+<a href="/about#story">Our Story</a>
 ```
 
 ## Customize Scroll Behavior
