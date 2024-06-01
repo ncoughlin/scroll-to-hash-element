@@ -1,7 +1,7 @@
 {
   "name": "@cascadia-code/scroll-to-hash-element",
-  "version": "1.0.1",
-  "description": "Enables hash links. Listens to the hash property of React-Router location and scrolls to the identified element if it exists.",
+  "version": "2.0.0",
+  "description": "Detects location.hash changes and scrolls to the element with the corresponding id. Customizable scroll behavior.",
   "main": "src/index.tsx",
   "publishConfig": {
     "access": "public"
@@ -16,7 +16,8 @@
   "keywords": [
     "react-router",
     "hash",
-    "hash-link"
+    "hash-link",
+    "anchor link"
   ],
   "author": "Nicholas Coughlin",
   "license": "MIT",
@@ -25,8 +26,7 @@
   },
   "homepage": "https://github.com/ncoughlin/scroll-to-hash-element#readme",
   "peerDependencies": {
-    "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
-    "react-router-dom": "^6.0.0"
+    "react": "^16.8.0 || ^17.0.0 || ^18.0.0"
   },
   "devDependencies": {
     "@types/react": "^18.3.3",
