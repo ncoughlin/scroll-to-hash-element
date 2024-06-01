@@ -1,6 +1,6 @@
 {
   "name": "@cascadia-code/scroll-to-hash-element",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Detects location.hash changes and scrolls to the element with the corresponding id. Customizable scroll behavior.",
   "main": "src/index.tsx",
   "publishConfig": {
