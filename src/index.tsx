@@ -13,7 +13,8 @@ const ScrollToHashElement = ({
   block = "start",
 }: ScrollToHashElementProps):null => {
   const [hash, setHash] = useState(window.location.hash);
-
+  const [count, setCount] = useState(0);
+  
   const originalPushState = window.history.pushState;
   const originalReplaceState = window.history.replaceState;
 
@@ -39,6 +40,9 @@ const ScrollToHashElement = ({
     const handleLocationChange = () => {
       setHash(window.location.hash);
 
+      // We increment count just so the layout effect will run if the hash is the same.
+      // Otherwise the user might click a hashlink a second time and it won't go anywhere.
+      setCount(count=>count+1)
     };
 
     window.addEventListener('locationchange', handleLocationChange);
@@ -69,7 +73,7 @@ const ScrollToHashElement = ({
         });
       }
     }
-  }, [hash]);
+  }, [hash, count]);
 
   return null;
 };
