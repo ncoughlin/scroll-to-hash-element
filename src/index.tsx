@@ -2,6 +2,8 @@ import { useLayoutEffect, useState, useEffect, useRef } from "react";
 
 
 interface ScrollToHashElementProps {
+  /** On first run do we jump or scroll? */
+  initialBehavior?: ScrollBehavior;
   behavior?: ScrollBehavior;
   inline?: ScrollLogicalPosition;
   block?: ScrollLogicalPosition;
@@ -9,6 +11,7 @@ interface ScrollToHashElementProps {
 
 const ScrollToHashElement = ({
   behavior = "auto",
+  initialBehavior = "auto",
   inline = "nearest",
   block = "start",
 }: ScrollToHashElementProps):null => {
@@ -16,6 +19,10 @@ const ScrollToHashElement = ({
   const [count, setCount] = useState(0);
   const originalListeners = useRef<{[key:string]: Function}>({})
   
+  // We need to know if this is the first run. If it is, we can do an instant jump, no scrolling.
+  const [firstRun, setFirstRun] = useState(true);
+  useEffect(() => setFirstRun(false), [])
+
 
   useEffect(() => {
   
@@ -79,13 +86,13 @@ const ScrollToHashElement = ({
       if (element) {
         // console.log(`scrollIntoView ${hash} behavior: ${behavior}, inline: ${inline}, block: ${block}`);
         element.scrollIntoView({
-          behavior: behavior,
+          behavior: firstRun ? initialBehavior : behavior,
           inline: inline,
           block: block,
         });
       }
     }
-  }, [hash, count]);
+  }, [hash, count, firstRun]);
 
   return null;
 };
