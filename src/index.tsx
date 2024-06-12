@@ -11,7 +11,7 @@ const ScrollToHashElement = ({
   behavior = "auto",
   inline = "nearest",
   block = "start",
-}: ScrollToHashElementProps) => {
+}: ScrollToHashElementProps):null => {
   const [hash, setHash] = useState(window.location.hash);
 
   const originalPushState = window.history.pushState;
