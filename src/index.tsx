@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState, useEffect } from "react";
+import { useLayoutEffect, useState, useEffect, useRef } from "react";
 
 
 interface ScrollToHashElementProps {
@@ -14,43 +14,55 @@ const ScrollToHashElement = ({
 }: ScrollToHashElementProps):null => {
   const [hash, setHash] = useState(window.location.hash);
   const [count, setCount] = useState(0);
+  const originalListeners = useRef<{[key:string]: Function}>({})
   
-  const originalPushState = window.history.pushState;
-  const originalReplaceState = window.history.replaceState;
-
-  window.history.pushState = function (...args: any) {
-    const result = originalPushState.apply(this, args);
-    window.dispatchEvent(new Event('pushstate'));
-    window.dispatchEvent(new Event('locationchange'));
-    return result;
-  };
-
-  window.history.replaceState = function (...args: any) {
-    const result = originalReplaceState.apply(this, args);
-    window.dispatchEvent(new Event('replacestate'));
-    window.dispatchEvent(new Event('locationchange'));
-    return result;
-  };
-
-  window.addEventListener('popstate', () => {
-    window.dispatchEvent(new Event('locationchange'));
-  });
 
   useEffect(() => {
+  
     const handleLocationChange = () => {
-      setHash(window.location.hash);
+        setHash(window.location.hash);
+    
+        // We increment count just so the layout effect will run if the hash is the same.
+        // Otherwise the user might click a hashlink a second time and it won't go anywhere.
+        setCount((count:number)=>count+1)
+      };
 
-      // We increment count just so the layout effect will run if the hash is the same.
-      // Otherwise the user might click a hashlink a second time and it won't go anywhere.
-      setCount(count=>count+1)
-    };
+	  const onPopState = () => {
+        window.dispatchEvent(new Event('locationchange'));
+      }
+    
+      const addWindowListeners = () => {
+		originalListeners.current.pushState = window.history.pushState;
+		originalListeners.current.replaceState = window.history.replaceState;
+	
+        window.history.pushState = function (...args: any) {
+            const result = originalListeners.current.pushState.apply(this, args);
+            window.dispatchEvent(new Event('pushstate'));
+            window.dispatchEvent(new Event('locationchange'));
+            return result;
+        };
 
-    window.addEventListener('locationchange', handleLocationChange);
+        window.history.replaceState = function (...args: any) {
+            const result = originalListeners.current.replaceState.apply(this, args);
+            window.dispatchEvent(new Event('replacestate'));
+            window.dispatchEvent(new Event('locationchange'));
+            return result;
+        };
 
-    // Cleanup the event listener on component unmount
-    return () => {
-      window.removeEventListener('locationchange', handleLocationChange);
-    };
+        window.addEventListener('popstate', onPopState);
+        window.addEventListener('locationchange', handleLocationChange);
+    }
+    
+    // Cleanup the event listeners on component unmount
+    const removeWindowListeners = () => {
+        window.history.pushState = originalListeners.current.pushState as typeof window.history.pushState
+        window.history.replaceState = originalListeners.current.replaceState as typeof window.history.replaceState
+        window.removeEventListener('popstate', onPopState);
+        window.removeEventListener('locationchange', handleLocationChange);
+      }
+
+    addWindowListeners()
+    return removeWindowListeners;
   }, []);
 
 
@@ -65,7 +77,7 @@ const ScrollToHashElement = ({
       const element = document.getElementById(removeHashCharacter(hash));
 
       if (element) {
-        console.log("scrollIntoView");
+        // console.log(`scrollIntoView ${hash} behavior: ${behavior}, inline: ${inline}, block: ${block}`);
         element.scrollIntoView({
           behavior: behavior,
           inline: inline,
