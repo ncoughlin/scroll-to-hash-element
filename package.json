@@ -1,18 +1,21 @@
 {
   "name": "@cascadia-code/scroll-to-hash-element",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Detects location.hash changes and scrolls to the element with the corresponding id. Customizable scroll behavior.",
-  "main": "src/index.tsx",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
+    "build": "tsc",
     "test": "npm test"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ncoughlin/scroll-to-hash-element.git"
   },
+  "files": ["dist"],
   "keywords": [
     "react-router",
     "hash",
@@ -30,6 +33,6 @@
   },
   "devDependencies": {
     "@types/react": "^18.3.3",
-    "typescript": "^4.9.0"
+    "typescript": "^4.9.5"
   }
 }
