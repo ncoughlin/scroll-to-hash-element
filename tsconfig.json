@@ -3,6 +3,8 @@
     "outDir": "dist", // Save compiled JS files here
     "target": "ES6",
     "module": "CommonJS",
+    "declaration": true,
+    "outDir": "dist",
     "jsx": "react",
     "strict": true,
     "esModuleInterop": true,
