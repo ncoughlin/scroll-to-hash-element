@@ -4,6 +4,7 @@
     "target": "ES6",
     "module": "CommonJS",
     "declaration": true,
+    "declarationDir": "dist",
     "outDir": "dist",
     "jsx": "react",
     "strict": true,
